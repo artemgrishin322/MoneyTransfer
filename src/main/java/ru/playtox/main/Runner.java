@@ -13,31 +13,35 @@ public class Runner {
     private static final Logger mainLogger = LogManager.getLogger(Runner.class);
 
     public static void main(String[] args) {
-        mainLogger.info(String.format(LogConstants.START_INFO.toString()));
-
         List<Account> accounts = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             accounts.add(new Account());
         }
+        logAccountsInfo(accounts);
 
         List<Thread> workingThreads = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
-            workingThreads.add(new Thread(new AccountService(accounts)));
-            workingThreads.get(i).start();
+            Thread newWorkingThread = new Thread(new AccountService(accounts));
+            newWorkingThread.start();
+            workingThreads.add(newWorkingThread);
         }
 
         for (Thread workingThread : workingThreads) {
             try {
                 workingThread.join();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                mainLogger.error(String.format(LogConstants.INTERRUPTED_ERROR.toString()), e);
             }
         }
+        logAccountsInfo(accounts);
+    }
 
-        int accountSum = 0;
-        for (Account account : accounts) {
-            accountSum += account.getBalance();
+    private static void logAccountsInfo(List<Account> accounts) {
+        int sum = 0;
+        for(Account acc : accounts) {
+            sum += acc.getBalance();
+            mainLogger.info(String.format(LogConstants.ACCOUNT_BALANCE_INFO.toString(), acc.getId(), acc.getBalance()));
         }
-        mainLogger.info(String.format(LogConstants.END_INFO.toString(), accounts.size(), accountSum));
+        mainLogger.info(String.format(LogConstants.ACCOUNT_SUM_INFO.toString(), accounts.size(), sum));
     }
 }

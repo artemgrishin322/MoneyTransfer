@@ -8,8 +8,8 @@ public enum LogConstants {
     INTERRUPTED_ERROR("Thread was interrupted%n"),
     ACCOUNT_BALANCE_NEGATIVE_WARN("Not enough money on the account {%s}%n"),
     TRANSFER_INFO("Sum to be transferred = %d from {%s} to {%s}%n"),
-    END_INFO("Program has finished. Total money amount at all %d accounts is %d%n"),
-    START_INFO("Program has started%n");
+    ACCOUNT_SUM_INFO("Total money amount at all %d accounts is %d%n"),
+    ACCOUNT_BALANCE_INFO("Account {%s} balance = %d%n");
 
     private final String msgPattern;
 

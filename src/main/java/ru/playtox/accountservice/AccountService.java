@@ -40,7 +40,7 @@ public class AccountService implements Runnable {
                 Thread.sleep((int) (Math.random() * 1000) + 1000);
             }
         } catch (InterruptedException e) {
-            accServLogger.error(LogConstants.INTERRUPTED_ERROR.toString(), e);
+            accServLogger.error(String.format(LogConstants.INTERRUPTED_ERROR.toString()), e);
         }
     }
 
