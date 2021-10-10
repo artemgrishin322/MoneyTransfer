@@ -19,7 +19,6 @@ public class AccountService implements Runnable {
     public AccountService(List<Account> availableAccounts) {
         randomizer = new Random();
         this.availableAccounts = availableAccounts;
-        accServLogger.info(String.format(LogConstants.ACCOUNT_SERVICE_CREATED_INFO.toString(), IdGenerator.getIdForAccServ()));
     }
 
     @Override
@@ -28,6 +27,9 @@ public class AccountService implements Runnable {
         try {
             while (operation_number.get() < MAX_TRANSFER) {
                 accServLogger.info(String.format(LogConstants.OPERATION_INFO.toString(), operation_number.incrementAndGet()));
+                /*
+                To avoid transfers to the same account, in case if acc2 == acc1 the second account should be chosen again
+                 */
                 Account acc1 = chooseAccount();
                 Account acc2;
                 do {

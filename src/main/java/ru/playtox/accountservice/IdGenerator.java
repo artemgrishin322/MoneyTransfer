@@ -8,10 +8,4 @@ public class IdGenerator {
 
         return "acc-" + random.nextInt(10000) + "-id_acc-" + random.nextInt(100);
     }
-
-    public static String getIdForAccServ() {
-        Random random = new Random();
-
-        return "acc_serv-" + random.nextInt(10000) + "-id_serv-" + random.nextInt(100);
-    }
 }

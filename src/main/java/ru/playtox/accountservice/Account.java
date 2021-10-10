@@ -14,13 +14,14 @@ public class Account {
     public Account() {
         id = IdGenerator.getIdForAcc();
         balance = INITIAL_MONEY_VAL;
-        accLogger.info(String.format(LogConstants.ACCOUNT_CREATED_INFO.toString(), id));
     }
 
+    /*
+    Constructor added in case you want to set the initial balance manually
+     */
     public Account(int balance) {
         id = IdGenerator.getIdForAcc();
         this.balance = balance;
-        accLogger.info(String.format(LogConstants.ACCOUNT_CREATED_INFO.toString(), id));
     }
 
     public synchronized void withdraw(int sum) throws IllegalArgumentException {

@@ -29,6 +29,11 @@
             <AppenderRef ref="rollingFile"/>
         </Logger>
 
+        <Logger name="ru.playtox.main.Runner" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+
         <!-- Root Logger -->
         <Root level="all">
             <AppenderRef ref="Console"/>
