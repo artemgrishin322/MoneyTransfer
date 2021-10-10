@@ -51,7 +51,7 @@ public class AccountService implements Runnable {
         int sum = randomizer.nextInt(from.getBalance());
         accServLogger.info(String.format(LogConstants.TRANSFER_INFO.toString(),sum, from.getId(), to.getId() ));
         try {
-
+            from.withdraw(sum);
             to.deposit(sum);
         } catch(IllegalArgumentException e) {
             accServLogger.error(String.format(LogConstants.BALANCE_ERROR.toString(), sum, from.getId(), from.getBalance()), e);
